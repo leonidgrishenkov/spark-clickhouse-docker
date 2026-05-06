@@ -2,9 +2,12 @@ Docker image with Apache Spark and extras to work with Clickhouse.
 
 
 ```sh
-pyspark \
-    --conf "spark.hadoop.fs.s3a.access.key=" \
-    --conf "spark.hadoop.fs.s3a.secret.key=" \
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+
+/opt/spark/bin/pyspark \
+    --conf "spark.hadoop.fs.s3a.access.key=$AWS_ACCESS_KEY_ID" \
+    --conf "spark.hadoop.fs.s3a.secret.key=$AWS_SECRET_ACCESS_KEY" \
     --conf "spark.hadoop.fs.s3a.endpoint=https://obs.ru-moscow-1.hc.sbercloud.ru" \
     --conf "spark.hadoop.fs.s3a.path.style.access=true" \
     --conf "spark.hadoop.fs.s3a.connection.ssl.enabled=false" \
@@ -16,7 +19,7 @@ pyspark \
 
 ```python
 url = "jdbc:clickhouse://clickhouse-common.analytics.sbc.dc:8123"
-user = "l.grishenkov" 
+user = ""
 password = ""
 driver = "com.clickhouse.jdbc.ClickHouseDriver"
 
